@@ -5,6 +5,7 @@ group :development do
   gem 'rspec'
   gem "activemodel", ">= 3.1"
   gem "activesupport", ">= 3.1"
+  gem "mime-types", "~> 1.16"
   gem 'guard'
   gem 'ruby_gntp'
   gem 'guard-rspec'
