@@ -7,7 +7,7 @@ describe RbtcArbitrage::Clients::BitstampClient do
   describe "#balance" do
     it "fetches the balance correctly", :vcr do
       balances = Bitstamp.balance
-      client.balance.should == [balances["usd_available"].to_f, balances["btc_available"].to_f]
+      client.balance.should == [balances["btc_available"].to_f, balances["usd_available"].to_f]
     end
   end
 

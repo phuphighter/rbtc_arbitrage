@@ -43,8 +43,8 @@ http_interactions:
       - Incapsula
     body:
       encoding: ASCII-8BIT
-      string: '{"btc_reserved": "0", "fee": "0.5000", "btc_available": "0", "usd_reserved":
-        "0", "btc_balance": "0", "usd_balance": "0.00", "usd_available": "0.00"}'
+      string: '{"btc_reserved": "0", "fee": "0.5000", "btc_available": "1.5", "usd_reserved":
+        "0", "btc_balance": "1.5", "usd_balance": "150.00", "usd_available": "150.00"}'
     http_version: 
   recorded_at: Tue, 17 Dec 2013 18:40:03 GMT
 - request:
@@ -89,8 +89,8 @@ http_interactions:
       - Incapsula
     body:
       encoding: ASCII-8BIT
-      string: '{"btc_reserved": "0", "fee": "0.5000", "btc_available": "0", "usd_reserved":
-        "0", "btc_balance": "0", "usd_balance": "0.00", "usd_available": "0.00"}'
+      string: '{"btc_reserved": "0", "fee": "0.5000", "btc_available": "1.5", "usd_reserved":
+        "0", "btc_balance": "1.5", "usd_balance": "150.00", "usd_available": "150.00"}'
     http_version: 
   recorded_at: Tue, 17 Dec 2013 18:40:04 GMT
 recorded_with: VCR 2.7.0
