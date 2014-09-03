@@ -25,11 +25,6 @@ module RbtcArbitrage
       end
 
       def trade action
-        warning = "BTC-E does not support API bitcoin transfer. "
-        warning << "If you really want to trade, you will have "
-        warning << "to manually send bitcoin. Enter 'accept' to continue. \n> "
-        @options[:logger].warn warning if @options[:verbose]
-        return false unless gets.chomp == "accept"
         opts = {
           type: action,
           rate: price(action),
