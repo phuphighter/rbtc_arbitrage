@@ -5,12 +5,12 @@ module RbtcArbitrage
         return false unless options[:notify]
         return false unless @percent > options[:cutoff]
 
-        if (sendgrid_email = ENV['SENDGRID_EMAIL']).present?
+        if (smtp_email = ENV['SMTP_EMAIL']).present?
           setup_pony
-          options[:logger].info "Sending email to #{sendgrid_email}"
+          options[:logger].info "Sending email to #{smtp_email}"
           Pony.mail({
             body: notification,
-            to: sendgrid_email,
+            to: smtp_email,
           })
         end
 
@@ -24,15 +24,15 @@ module RbtcArbitrage
 
       def setup_pony
         Pony.options = {
-          from: ENV['FROM_EMAIL'] || "info@example.org",
+          from: ENV['SMTP_FROM_EMAIL'] || "info@example.org",
           subject: "rbtc_arbitrage notification",
           via: :smtp,
           via_options: {
-            address: 'smtp.sendgrid.net',
+            address: 'smtp.gmail.com',
             port: '587',
-            domain: 'heroku.com',
-            user_name: ENV['SENDGRID_USERNAME'],
-            password: ENV['SENDGRID_PASSWORD'],
+            domain: ENV['SMTP_DOMAIN'],
+            user_name: ENV['SMTP_USERNAME'],
+            password: ENV['SMTP_PASSWORD'],
             authentication: :plain,
             enable_starttls_auto: true
           }

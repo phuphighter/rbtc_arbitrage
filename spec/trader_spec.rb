@@ -38,8 +38,8 @@ describe RbtcArbitrage::Trader do
       end
     end
 
-    ["PASSWORD","USERNAME","EMAIL"].each do |key|
-      key = "SENDGRID_#{key}"
+    ["PASSWORD","USERNAME","FROM_EMAIL","DOMAIN"].each do |key|
+      key = "SMTP_#{key}"
       it "should raise if --notify and not ENV[#{key}]" do
         trader.sell_client.stub(:validate_env)
         trader.buy_client.stub(:validate_env)
@@ -274,12 +274,12 @@ describe RbtcArbitrage::Trader do
       trader.buyer[:price] = 1
       trader.seller[:price] = 1
 
-      ENV['SENDGRID_EMAIL'] ||= 'something'
+      ENV['SMTP_EMAIL'] ||= 'something'
       ENV['STATHAT_API_KEY'] = nil
 
       trader.options[:logger].should_receive(:info)
       Pony.should_receive(:mail).with({
-        to: ENV['SENDGRID_EMAIL'],
+        to: ENV['SMTP_EMAIL'],
         body: trader.notification,
       })
 
@@ -295,7 +295,7 @@ describe RbtcArbitrage::Trader do
       trader.seller[:price] = 1
 
       ENV['STATHAT_API_KEY'] = '1234'
-      ENV['SENDGRID_EMAIL'] = nil
+      ENV['SMTP_EMAIL'] = nil
 
       trader.options[:logger].should_receive(:info)
       StatHat::SyncAPI.should_receive(:ez_post_value).with("#{trader.buy_client.exchange}_to_#{trader.sell_client.exchange}_percent", ENV['STATHAT_API_KEY'], 3).ordered
@@ -308,8 +308,8 @@ describe RbtcArbitrage::Trader do
 
   describe "#setup_pony" do
     it "gets called on validation when --notify" do
-      ["PASSWORD","USERNAME","EMAIL"].each do |key|
-        key = "SENDGRID_#{key}"
+      ["PASSWORD","USERNAME","EMAIL","DOMAIN"].each do |key|
+        key = "SMTP_#{key}"
         ENV[key] ||= "something"
       end
       trader.options[:notify] = true
@@ -318,15 +318,15 @@ describe RbtcArbitrage::Trader do
     end
     it "sets up pony correctly" do
       opts = {
-        from: "info@example.org",
+        from: ENV['SMTP_FROM_EMAIL'],
         subject: "rbtc_arbitrage notification",
         :via => :smtp,
         :via_options => {
-          :address => 'smtp.sendgrid.net',
+          :address => 'smtp.gmail.com',
           :port => '587',
-          :domain => 'heroku.com',
-          :user_name => ENV['SENDGRID_USERNAME'],
-          :password => ENV['SENDGRID_PASSWORD'],
+          :domain => ENV['SMTP_DOMAIN'],
+          :user_name => ENV['SMTP_USERNAME'],
+          :password => ENV['SMTP_PASSWORD'],
           :authentication => :plain,
           :enable_starttls_auto => true
         }

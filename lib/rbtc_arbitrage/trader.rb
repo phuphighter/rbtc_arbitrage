@@ -92,8 +92,8 @@ module RbtcArbitrage
         client.validate_env
       end
       if options[:notify]
-        ["PASSWORD","USERNAME","EMAIL"].each do |key|
-          key = "SENDGRID_#{key}"
+        ["PASSWORD","USERNAME","EMAIL","DOMAIN","FROM_EMAIL"].each do |key|
+          key = "SMTP_#{key}"
           unless ENV[key]
             raise ArgumentError, "Exiting because missing required ENV variable $#{key}."
           end
