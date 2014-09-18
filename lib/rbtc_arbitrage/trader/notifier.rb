@@ -24,7 +24,7 @@ module RbtcArbitrage
 
       def setup_pony
         Pony.options = {
-          from: ENV['SMTP_FROM_EMAIL'] || "info@example.org",
+          from: ENV['SMTP_FROM_EMAIL'] ||= "info@example.org",
           subject: "rbtc_arbitrage notification",
           via: :smtp,
           via_options: {
@@ -52,6 +52,8 @@ module RbtcArbitrage
         buying #{@options[:volume]} btc from #{lower_ex} for $#{@paid.round(2)}
         selling #{@options[:volume]} btc on #{higher_ex} for $#{@received.round(2)}
         profit: $#{(@received - @paid).round(2)} (#{@percent.round(2)}%)
+
+        #{"The seller is BTCE, so you must transfer #{@options[:volume]} bitcoin manually." if lower_ex == "Btce"}
 
         -------------------
 
