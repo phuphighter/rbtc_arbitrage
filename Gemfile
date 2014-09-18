@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 gemspec
+
+gem 'bitstamp', git: "https://github.com/kojnapp/bitstamp.git"
+
 group :development do
   gem 'rspec'
   gem "activemodel", ">= 3.1"

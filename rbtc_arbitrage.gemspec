@@ -30,8 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "stathat", '0.1.7'
   spec.add_dependency "coinbase", '2.1.0'
   spec.add_dependency "pony", '1.10'
-  spec.add_dependency "tco", "0.1.0"
-  spec.add_dependency "bitstamp-rbtc-arbitrage", "0.4.0"
+  spec.add_dependency "tco", "0.1.0"  
   spec.add_dependency "tzinfo", '~> 1.1'
   spec.add_dependency "mail", "2.5.4"
 end

@@ -45,7 +45,7 @@ module RbtcArbitrage
       end
 
       def transfer other_client
-        Bitstamp.transfer(@options[:volume], other_client.address)
+        Bitstamp.withdraw_bitcoins({amount: @options[:volume], address: other_client.address})
       end
     end
   end

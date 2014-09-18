@@ -29,9 +29,10 @@ Donations accepted: **16BMcqf93eEpb2aWgMkJCSQQH85WzrpbdZ**
 
 ## Installation
 
-Install it yourself as:
+Gemfile:
 
-    $ gem install rbtc_arbitrage
+    gem 'bitstamp', git: "https://github.com/kojnapp/bitstamp.git"    
+    gem 'rbtc_arbitrage', git: "https://github.com/phuphighter/rbtc_arbitrage.git"
 
 ## Usage
 

@@ -46,7 +46,7 @@ describe RbtcArbitrage::Clients::BitstampClient do
   describe "#transfer" do
     it "calls Bitstamp correctly", :vcr do
       sell_client = RbtcArbitrage::Clients::CampbxClient.new
-      Bitstamp.should_receive(:transfer).with(0.01, sell_client.address)
+      Bitstamp.should_receive(:withdraw_bitcoins).with({amount: 0.01, address: sell_client.address})
       client.transfer sell_client
     end
   end
