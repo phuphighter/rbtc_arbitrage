@@ -319,7 +319,7 @@ describe RbtcArbitrage::Trader do
     it "sets up pony correctly" do
       opts = {
         from: ENV['SMTP_FROM_EMAIL'],
-        subject: "rbtc_arbitrage notification",
+        subject: "Bitcoin arbitrage notification for #{Time.now.strftime('%b %d at %I:%M%p')}",
         :via => :smtp,
         :via_options => {
           :address => 'smtp.gmail.com',

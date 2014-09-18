@@ -25,7 +25,7 @@ module RbtcArbitrage
       def setup_pony
         Pony.options = {
           from: ENV['SMTP_FROM_EMAIL'] ||= "info@example.org",
-          subject: "rbtc_arbitrage notification",
+          subject: "Bitcoin arbitrage notification for #{Time.now.strftime('%b %d at %I:%M%p')}",
           via: :smtp,
           via_options: {
             address: 'smtp.gmail.com',
