@@ -17,9 +17,6 @@ module RbtcArbitrage
         end
       end
 
-      def interface
-      end
-
       def validate_env
         validate_keys :btce_key, :btce_secret, :btce_address
       end
