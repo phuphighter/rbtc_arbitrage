@@ -38,7 +38,7 @@ module RbtcArbitrage
           sell: -1,
         }[action]
         bitstamp_options = {
-          price: (@price + 0.001 * multiple),
+          price: (@price + 0.001 * multiple).to_f.round(2),
           amount: @options[:volume],
         }
         Bitstamp.orders.send(action, bitstamp_options)
